@@ -2,7 +2,7 @@ from django.urls import path
 from .views_class import CreateBlog, UpdateBlog, DeleteBlog
 from .views import CreateComment, CreateLike, HomeView, BlogDetailView, UserView
 urlpatterns = [
-    path('', HomeView.as_view()),
+    path('', HomeView.as_view(), name='home'),
     path('my-blogs/', UserView.as_view(), name='my_blogs'),
     path('<int:pk>/', BlogDetailView.as_view(), name='blog_detail'),
     path('create/', CreateBlog.as_view(), name="create_blog"),
