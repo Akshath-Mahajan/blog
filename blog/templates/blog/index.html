@@ -66,7 +66,7 @@
       {% for post in posts %}
 
       <div class="post-preview">
-        <a href="">
+        <a href="{% url 'blog_detail' pk=post.id %}">
           <h2 class="post-title">{{post.title}}</h2>
         </a>
         <p class="post-meta">

@@ -14,7 +14,10 @@ class BlogDetailView(DetailView):
     model = BlogPost
     template_name = 'blog/post.html'
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'post': BlogPost.objects.get(id=self.kwargs['pk']), 'comments': BlogPost.comments,  'likes': BlogPost.likes})
+        blog = BlogPost.objects.get(id=self.kwargs['pk'])
+        comments = BlogComment.objects.filter(blog=blog)
+        likes = BlogLike.objects.filter(blog=blog)
+        return render(request, self.template_name, {'post': blog, 'comments': comments,  'likes': likes})
 
 
 class GetLikes(DetailView):
