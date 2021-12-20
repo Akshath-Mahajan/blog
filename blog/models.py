@@ -11,6 +11,7 @@ class BlogPost(models.Model):
     content=models.CharField(max_length=2000)
     created_date=models.DateTimeField(auto_now_add=True)
     image=models.ImageField(blank=True, null=True,upload_to=upload_path_generator)
+    like_count=models.IntegerField(default=0)
 
 class BlogLike(models.Model):
     blog=models.ForeignKey(BlogPost, on_delete=models.CASCADE,related_name='likes')
