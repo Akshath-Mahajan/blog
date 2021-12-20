@@ -5,7 +5,8 @@
 {%endblock%}
 {%block body%}
     <!-- Page Header-->
-    <header style="background-image: url({{post.image}})" class="masthead">
+    <header style="background-image: url({{post.image.url}})"
+  class="masthead">
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
@@ -13,8 +14,11 @@
               <h1>{{post.title}}</h1>
               <div class="meta">Posted by {{post.author}} on {{post.created_date|date:"M d, Y"}} </div> 
               <br/>
-              <button color="btn btn-primary">Like</button>
-              <span>{{post.like_count}} likes</span>
+              {% if post.author == user %}
+                <a href="{% url 'update_blog' post.pk %}" class="btn btn-primary"><i class="zmdi zmdi-edit"></i> Edit</a>
+              {% endif %}
+              <button class="btn btn-primary"><i class="zmdi zmdi-thumb-up"></i> Like</button>
+              <span>{{post.like_count}} likes </span>
             </div>
           </div>
         </div>
