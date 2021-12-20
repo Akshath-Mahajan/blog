@@ -2,6 +2,7 @@
 {% load static %}
 {%block head%}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <script src="{% static 'js/like.js' %}"></script>
 {%endblock%}
 {%block body%}
     <!-- Page Header-->
@@ -17,8 +18,16 @@
               {% if post.author == user %}
                 <a href="{% url 'update_blog' post.pk %}" class="btn btn-primary"><i class="zmdi zmdi-edit"></i> Edit</a>
               {% endif %}
-              <button class="btn btn-primary"><i class="zmdi zmdi-thumb-up"></i> Like</button>
-              <span>{{post.like_count}} likes </span>
+              {% if user.is_authenticated %}
+              <button id='like-btn' class="btn btn-primary" onclick="clickLike({{post.id}}, '{{csrf_token}}')">
+                {% if has_liked %}
+                <i class="zmdi zmdi-thumb-down"></i> Unlike
+                {% else %}
+                <i class="zmdi zmdi-thumb-up"></i> Like
+                {% endif %}
+              </button>
+              {% endif %}
+              <span><span id='like-count'>{{post.like_count}}</span> likes</span>
             </div>
           </div>
         </div>

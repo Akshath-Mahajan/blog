@@ -31,7 +31,10 @@ class BlogDetailView(DetailView):
         blog = BlogPost.objects.get(id=self.kwargs['pk'])
         comments = BlogComment.objects.filter(blog=blog).order_by('-id')
         likes = BlogLike.objects.filter(blog=blog)
-        return render(request, self.template_name, {'post': blog, 'comments': comments,  'likes': likes, 'user': request.user})
+        if request.user:
+            has_liked = likes.filter(like_author=request.user).exists()
+            print(has_liked)
+        return render(request, self.template_name, {'post': blog, 'comments': comments,  'likes': likes, 'user': request.user, 'has_liked': has_liked})
 
 
 class UserView(ListView):
@@ -57,11 +60,16 @@ class GetLikes(DetailView):
 class CreateLike(View, LoginRequiredMixin):
     def post(self, request, pk):
         blog = BlogPost.objects.get(pk=pk)
-        BlogLike(
-            blog=blog,
-            like_author = request.user
-        ).save()
-        return redirect('blog_detail', pk=pk)
+        like = BlogLike.objects.filter(like_author=request.user, blog=blog)
+        if like.exists():
+            like.delete()
+            return JsonResponse({'success': True, "change": -1})
+        else:
+            BlogLike(
+                blog=blog,
+                like_author = request.user
+            ).save()
+            return JsonResponse({'success': True, "change": 1})
 
 class CreateComment(View, LoginRequiredMixin):
     def get(self, request, pk):
