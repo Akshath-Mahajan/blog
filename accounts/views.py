@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.contrib.auth import get_user_model, authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model, authenticate, login, logout
 import re
 
 User = get_user_model()
@@ -15,7 +15,7 @@ def login_view(request):
             # A backend authenticated the credentials
             return render(request, 'accounts/login.html', {'msgs':['Error! Username and Password do not match.']})
         login(request, user)
-        return render(request, 'accounts/login.html', {'msgs':['Success! You have now logged in as '+username]})
+        return redirect('home')
         # change to redirect ^
     
 def signup_view(request):
@@ -52,3 +52,6 @@ def signup_view(request):
         user.save()
         return render(request, 'accounts/register.html', {'msgs':['Success! Please proceed to login']})
 
+def signout_view(request):
+    logout(request)
+    return redirect('home')
