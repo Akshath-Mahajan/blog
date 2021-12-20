@@ -11,7 +11,10 @@
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="post-heading">
               <h1>{{post.title}}</h1>
-              <div class="meta">Posted by {{post.author}} on {{post.created_date|date:"M d, Y"}} </div> <span>{{post.like_count}} likes</span>
+              <div class="meta">Posted by {{post.author}} on {{post.created_date|date:"M d, Y"}} </div> 
+              <br/>
+              <button color="btn btn-primary">Like</button>
+              <span>{{post.like_count}} likes</span>
             </div>
           </div>
         </div>
