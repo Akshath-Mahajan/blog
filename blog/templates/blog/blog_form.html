@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container flex-fill card-container">
+    <form method="POST" class="bg-light p-2">
+        {%csrf_token%}
+        <div class="form-group">
+            <label for="id_title" class="mt-3">Title:</label>
+            {{form.title}}
+            <label for="id_content" class="mt-3">Content:</label>
+            {{form.content}}
+            <label for="id_image" class="mt-3">Image:</label>
+            {{form.image}}
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Save</button>
+    </form>
+</div>
+{%endblock%}

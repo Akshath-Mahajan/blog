@@ -10,19 +10,16 @@ def upload_path_generator(instance, filename):
 # Create your models here.
 
 class BlogPost(models.Model):
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.CharField(max_length=2000)
     created_date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(blank=True, null=True,
-                              upload_to=upload_path_generator)
+    image = models.ImageField(blank=True, null=True, upload_to=upload_path_generator)
     like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
 
 class BlogLike(models.Model):
-    blog = models.ForeignKey(
-        BlogPost, on_delete=models.CASCADE, related_name='likes')
+    blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='likes')
     like_author = models.CharField(max_length=200)
 
 @receiver(post_save, sender=BlogLike)
