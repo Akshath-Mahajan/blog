@@ -16,33 +16,35 @@
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
-    <article class="mb-4">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            {{post.content}}
-          </div>
-        </div>
-      </div>
-    </article>
-    <!-- Divider-->
-      <hr class="my-4" />
-    <div class="container px-4 px-lg-5">
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">{{post.content}}</div>
+    </div>
+  </div>
+</article>
+<!-- Divider-->
+<hr class="my-4" />
+<div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
-      <h4 class="post-title">{{post.comment_count}} comments</h4>
-      {% for comment in comments %}
+      {% if not comments %}
+      <h3>No comments yet</h3>
+      {% else %} {% for comment in comments %}
       <div class="post-preview">
           <h6>{{comment.comment_content}}</h6>
         <p class="post-meta">
-          Posted by {{comment.comment_author}} on {{comment.comment_date|date:"M d, Y" }}
+          Posted by {{comment.comment_author}} on {{comment.comment_date|date:"M
+          d, Y" }}
         </p>
       </div>
       <!-- Divider-->
       <hr class="my-4" />
-      {% endfor %}
+      {% endfor %} {% endif %}
     </div>
   </div>
 </div>

@@ -38,7 +38,7 @@
   <body>
     <nav id="mainNav" class="navbar navbar-expand-lg navbar-light is-visible is-fixed">
       <div class="container px-4 px-lg-5">
-        <a href="index.html" class="navbar-brand">Blog</a>
+        <a href="{% url 'home' %}" class="navbar-brand">Blog</a>
         <button
           type="button"
           data-bs-toggle="collapse"
@@ -53,23 +53,50 @@
         <div id="navbarResponsive" class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto py-4 py-lg-0">
             <li class="nav-item">
-              <a href="index.html" class="nav-link px-lg-3 py-3 py-lg-4"
+              <a href="{% url 'home' %}" class="nav-link px-lg-3 py-3 py-lg-4"
                 >Home</a
               >
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="about.html" class="nav-link px-lg-3 py-3 py-lg-4"
                 >About</a
               >
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a href="post.html" class="nav-link px-lg-3 py-3 py-lg-4"
                 >Sample Post</a
               >
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a href="contact.html" class="nav-link px-lg-3 py-3 py-lg-4"
                 >Contact</a>
+            </li> -->
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'my_blogs' %}" class="nav-link px-lg-3 py-3 py-lg-4">
+                My Blogs
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'logout' %}" class="nav-link px-lg-3 py-3 py-lg-4">
+                Signout
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="{% url 'login' %}" class="nav-link px-lg-3 py-3 py-lg-4">
+                Login
+              </a>
+            </li>
+            <li>
+            <li class="nav-item">
+              <a href="{% url 'signup' %}" class="nav-link px-lg-3 py-3 py-lg-4">
+                Signup
+              </a>
+            </li>
+            <li>
+            {% endif %}
+
             </li>
           </ul>
         </div>
