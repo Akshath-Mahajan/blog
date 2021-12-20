@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView, CreateView, UpdateView
 from .models import BlogPost,BlogComment,BlogLike
 from django.views import View
 # Create your views here.
@@ -32,6 +32,21 @@ class BlogDetailView(DetailView):
         likes = BlogLike.objects.filter(blog=blog)
         return render(request, self.template_name, {'post': blog, 'comments': comments,  'likes': likes})
 
+
+class UserView(ListView):
+    model = BlogPost
+    template_name = 'blog/index.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
+
+
+class UserView(ListView):
+    model = BlogPost
+    template_name = 'blog/index.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
 
 class GetLikes(DetailView):
     model=BlogLike
