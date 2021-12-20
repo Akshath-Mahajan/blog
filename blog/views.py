@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import ListView,DetailView
@@ -10,6 +11,18 @@ class HomeView(ListView):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {'posts': BlogPost.objects.all()})
 
+class HomeView(ListView):
+    model = BlogPost
+    template_name = 'blog/index.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'posts': BlogPost.objects.all()})
+
+class UserView(ListView):
+    model = BlogPost
+    template_name = 'blog/index.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
+    
 class BlogDetailView(DetailView):
     model = BlogPost
     template_name = 'blog/post.html'
@@ -25,7 +38,7 @@ class GetLikes(DetailView):
     template_name=''
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {'likes': BlogLike.objects.filter(blog__id=self.kwargs['pk'])})
-class CreateLike(View):
+class CreateLike(View, LoginRequiredMixin):
     def post(self, request, pk):
         blog = BlogPost.objects.get(pk=pk)
         BlogLike(
@@ -34,7 +47,7 @@ class CreateLike(View):
         ).save()
         return JsonResponse({"status": "Success"})
 
-class CreateComment(View):
+class CreateComment(View, LoginRequiredMixin):
     def post(self, request, pk):
         blog = BlogPost.objects.get(pk=pk)
         comment = BlogComment(
