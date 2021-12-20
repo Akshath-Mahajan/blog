@@ -8,7 +8,7 @@ class HomeView(ListView):
     model = BlogPost
     template_name = 'blog/index.html'
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
+        return render(request, self.template_name, {'posts': BlogPost.objects.all()})
 
 class BlogDetailView(DetailView):
     model = BlogPost

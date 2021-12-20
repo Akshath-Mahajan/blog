@@ -1,145 +1,89 @@
-{%extends 'base.html'%}
-{%block head%}
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-{%endblock%}
-{%block body%}
-    <!-- Navigation-->
-    <nav id="mainNav" class="navbar navbar-expand-lg navbar-light">
-      <div class="container px-4 px-lg-5">
-        <a href="index.html" class="navbar-brand">Start Bootstrap</a>
-        <button
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          class="navbar-toggler"
-        >
-          Menu<i class="fas fa-bars"></i>
-        </button>
-        <div id="navbarResponsive" class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto py-4 py-lg-0">
-            <li class="nav-item">
-              <a href="index.html" class="nav-link px-lg-3 py-3 py-lg-4"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="about.html" class="nav-link px-lg-3 py-3 py-lg-4"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="post.html" class="nav-link px-lg-3 py-3 py-lg-4"
-                >Sample Post</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="contact.html" class="nav-link px-lg-3 py-3 py-lg-4"
-                >Contact</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="register.html" class="nav-link px-lg-3 py-3 py-lg-4"
-                >Sign Up</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Page Header-->
-    <header
-      style="background-image: url({% static 'assets/img/home-bg.jpg' %})"
-      class="masthead"
+{%extends 'base.html'%} {% load static %} {%block head%}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+{%endblock%} {%block body%}
+<!-- Navigation-->
+<nav id="mainNav" class="navbar navbar-expand-lg navbar-light">
+  <div class="container px-4 px-lg-5">
+    <a href="index.html" class="navbar-brand">Start Bootstrap</a>
+    <button
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      class="navbar-toggler"
     >
-      <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- Main Content-->
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Man must explore, and this is exploration at its greatest
-              </h2>
-              <h3 class="post-subtitle">
-                Problems look mighty small from 150 miles up
-              </h3></a
-            >
-            <p class="post-meta">
-              Posted by<a href="#!">Start Bootstrap</a>on September 24, 2021
-            </p>
-          </div>
-
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                I believe every human has a finite number of heartbeats. I don't
-                intend to waste any of mine.
-              </h2></a
-            >
-            <p class="post-meta">
-              Posted by<a href="#!">Start Bootstrap</a>on September 18, 2021
-            </p>
-          </div>
-
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">Science has not yet mastered prophecy</h2>
-              <h3 class="post-subtitle">
-                We predict too much for the next year and yet far too little for
-                the next ten.
-              </h3></a
-            >
-            <p class="post-meta">
-              Posted by<a href="#!">Start Bootstrap</a>on August 24, 2021
-            </p>
-          </div>
-
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">Failure is not an option</h2>
-              <h3 class="post-subtitle">
-                Many say exploration is part of our destiny, but it’s actually
-                our duty to future generations.
-              </h3></a
-            >
-            <p class="post-meta">
-              Posted by<a href="#!">Start Bootstrap</a>on July 8, 2021
-            </p>
-          </div>
-
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Pager-->
-          <div class="d-flex justify-content-end mb-4">
-            <a href="#!" class="btn btn-primary text-uppercase"
-              >Older Posts →</a
-            >
-          </div>
+      Menu<i class="fas fa-bars"></i>
+    </button>
+    <div id="navbarResponsive" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto py-4 py-lg-0">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link px-lg-3 py-3 py-lg-4">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link px-lg-3 py-3 py-lg-4">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="post.html" class="nav-link px-lg-3 py-3 py-lg-4"
+            >Sample Post</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link px-lg-3 py-3 py-lg-4"
+            >Contact</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="register.html" class="nav-link px-lg-3 py-3 py-lg-4"
+            >Sign Up</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Page Header-->
+<header
+  style="background-image: url({% static 'assets/img/home-bg.jpg' %})"
+  class="masthead"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Clean Blog</h1>
+          <span class="subheading">A Blog Theme by Start Bootstrap</span>
         </div>
       </div>
     </div>
+  </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <!-- Divider-->
+      <hr class="my-4" />
+      {% for post in posts %}
+
+      <div class="post-preview">
+        <a href="">
+          <h2 class="post-title">{{post.title}}</h2>
+        </a>
+        <p class="post-meta">
+          Posted by {{post.author}} on {{post.created_at}}
+        </p>
+      </div>
+
+      <!-- Divider-->
+      <hr class="my-4" />
+      {% endfor %}
+      <!-- Pager-->
+      <div class="d-flex justify-content-end mb-4">
+        <a href="#!" class="btn btn-primary text-uppercase">Older Posts →</a>
+      </div>
+    </div>
+  </div>
+</div>
 {%endblock%}
