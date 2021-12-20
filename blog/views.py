@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.generic import ListView,DetailView, CreateView, UpdateView
 from .models import BlogPost,BlogComment,BlogLike
 from django.views import View
+from django.shortcuts import redirect
 # Create your views here.
 class HomeView(ListView):
     model = BlogPost
@@ -60,7 +61,7 @@ class CreateLike(View, LoginRequiredMixin):
             blog=blog,
             like_author = request.user
         ).save()
-        return JsonResponse({"status": "Success"})
+        return redirect('blog_detail', pk=pk)
 
 class CreateComment(View, LoginRequiredMixin):
     def get(self, request, pk):
@@ -73,4 +74,4 @@ class CreateComment(View, LoginRequiredMixin):
             comment_author = request.user,
             comment_content = request.POST['content'])
         comment.save()
-        return JsonResponse({"status": "Success","comment":comment})
+        return redirect('blog_detail', pk=pk)
