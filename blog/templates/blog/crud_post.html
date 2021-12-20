@@ -11,7 +11,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">{{mode}} Post</h2>
-                        <form method="POST" class="register-form" id="register-form">
+                        <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="id_title"><i class="zmdi zmdi-edit"></i></label>

@@ -42,14 +42,15 @@ class UpdateBlog(LoginRequiredMixin, UpdateView):
         raise Http404
     def post(self, request, *args, **kwargs):
         blog = BlogPost.objects.get(id=self.kwargs['pk'])
-        title = request.POST["title"]
-        content = request.POST["content"]
-        image = request.POST["image"]
+        title = request.POST.get('title', None)
+        content = request.POST.get('content', None)
+        image = request.FILES.get('image', None)
         if title == None:
             title = blog.title
         if content == None:
             content = blog.content
-        image = blog.image
+        if image == None:
+            image = blog.image
         blog.title = title
         blog.content = content
         blog.image = image

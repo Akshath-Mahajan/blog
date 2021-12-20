@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 
 def upload_path_generator(instance, filename):
-    return '/'.join(['profile', instance.title, str(instance.id), filename])
+    return '/'.join(['blog', str(instance.pk), filename])
 
 # Create your models here.
 
