@@ -11,6 +11,18 @@ class HomeView(ListView):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {'posts': BlogPost.objects.all()})
 
+class HomeView(ListView):
+    model = BlogPost
+    template_name = 'blog/index.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'posts': BlogPost.objects.all()})
+
+class UserView(ListView):
+    model = BlogPost
+    template_name = 'blog/index.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
+    
 class BlogDetailView(DetailView):
     model = BlogPost
     template_name = 'blog/post.html'
