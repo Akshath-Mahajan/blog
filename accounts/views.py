@@ -12,10 +12,10 @@ def login_view(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
-            # A backend authenticated the credentials
-            return render(request, 'accounts/login.html', {'msgs':['Error! Username and Password do not match.']})
-        login(request, user)
-        return redirect('home')
+            login(request, user)
+            return redirect('home')
+         # A backend authenticated the credentials
+        return render(request, 'accounts/login.html', {'msgs':['Error! Username and Password do not match.']})
         # change to redirect ^
     
 def signup_view(request):
@@ -50,7 +50,7 @@ def signup_view(request):
 
         user = User.objects.create_user(username=username, password=pw1, email=email, last_name=last_name, first_name=first_name)
         user.save()
-        return render(request, 'accounts/register.html', {'msgs':['Success! Please proceed to login']})
+        return redirect('login')
 
 def signout_view(request):
     logout(request)
