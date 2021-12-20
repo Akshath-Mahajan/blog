@@ -20,9 +20,9 @@ class CreateBlog(LoginRequiredMixin, View):
         return render(request, 'blog/crud_post.html', {'mode':"Create"})
         
     def post(self, request, *args, **kwargs):
-        title = request.POST["title"]
-        content = request.POST["content"]
-        image = request.POST["image"]
+        title = request.POST.get('title', None)
+        content = request.POST.get('content', None)
+        image = request.FILES.get('image', None)
         blog = BlogPost.objects.create(author=request.user, title=title, content=content, image=image)
         blog.save()
         return redirect('blog_detail', pk=blog.id)
