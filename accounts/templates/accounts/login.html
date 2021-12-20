@@ -4,6 +4,14 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 {%endblock%}
 {%block body%}
+<div class="main">
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="{% static 'assets/img/signin-image.jpg' %}" alt="sing up image"></figure>
+                    <a href="#" class="signup-image-link">Create an account</a>
+                </div>
 
     <div class="main">
 
@@ -42,15 +50,14 @@
                                 <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                             </ul>
                         </div>
-                    </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
-
-        
-
-    </div>
-
-    <!-- JS -->
+        </div>
+    </section>
+</div>
 {%endblock%}
 
