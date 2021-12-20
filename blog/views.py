@@ -48,6 +48,9 @@ class CreateLike(View, LoginRequiredMixin):
         return JsonResponse({"status": "Success"})
 
 class CreateComment(View, LoginRequiredMixin):
+    def get(self, request, pk):
+        blog = BlogPost.objects.get(pk=pk)
+        return render(request, 'blog/add_comment.html', {'post': blog})
     def post(self, request, pk):
         blog = BlogPost.objects.get(pk=pk)
         comment = BlogComment(

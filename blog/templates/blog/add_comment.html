@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block head%}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+{%endblock%}
+{%block body%}
+
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">{{mode}} Add Comment</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_content"><i class="zmdi zmdi-edit"></i></label>
+                                <input type="textarea" name="content" id="id_content" placeholder="Comment" value="{{content}}" />
+                            </div>
+                            <div class="form-group form-button">
+                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Add"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{%endblock%}
