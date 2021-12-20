@@ -33,12 +33,10 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    {% block head %} 
-    
-     {% endblock %}
+    {% block head %} {% endblock %}
   </head>
   <body>
-    <nav id="mainNav" class="navbar navbar-expand-lg navbar-light is-fixed is-visible">
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-light is-visible is-fixed">
       <div class="container px-4 px-lg-5">
         <a href="index.html" class="navbar-brand">Blog</a>
         <button
