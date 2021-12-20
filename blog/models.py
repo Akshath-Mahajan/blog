@@ -20,7 +20,7 @@ class BlogPost(models.Model):
 
 class BlogLike(models.Model):
     blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='likes')
-    like_author = models.CharField(max_length=200)
+    like_author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 @receiver(post_save, sender=BlogLike)
 def create_profile(sender, instance, **kwargs):
