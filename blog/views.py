@@ -6,24 +6,13 @@ from .models import BlogPost,BlogComment,BlogLike
 from django.views import View
 from django.shortcuts import redirect
 # Create your views here.
-class HomeView(ListView):
-    model = BlogPost
-    template_name = 'blog/index.html'
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'posts': BlogPost.objects.all()})
 
 class HomeView(ListView):
     model = BlogPost
     template_name = 'blog/index.html'
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'posts': BlogPost.objects.all()})
+        return render(request, self.template_name, {'posts': BlogPost.objects.all().order_by('-id')})
 
-class UserView(ListView):
-    model = BlogPost
-    template_name = 'blog/index.html'
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
-    
 class BlogDetailView(DetailView):
     model = BlogPost
     template_name = 'blog/post.html'
@@ -42,15 +31,7 @@ class UserView(ListView):
     template_name = 'blog/index.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
-
-
-class UserView(ListView):
-    model = BlogPost
-    template_name = 'blog/index.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user)})
+        return render(request, self.template_name, {'posts': BlogPost.objects.filter(author=request.user).order_by('-id')})
 
 class GetLikes(DetailView):
     model=BlogLike
