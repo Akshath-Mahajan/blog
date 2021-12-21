@@ -17,7 +17,10 @@
               <br/>
               {% if post.author == user %}
                 <a href="{% url 'update_blog' post.pk %}" class="btn btn-primary"><i class="zmdi zmdi-edit"></i> Edit</a>
-                <a href="{% url 'dreate_blog' post.pk %}" class="btn btn-primary"><i class="zmdi zmdi-delete"></i> Delete</a>
+                <form action="{% url 'delete_blog' post.pk %}" method="POST" style="display: inline;">
+                  {% csrf_token %}
+                  <button type='submit' class="btn btn-primary"><i class="zmdi zmdi-delete"></i> Delete</button>
+                </form>
               {% endif %}
               {% if user.is_authenticated %}
               <button id='like-btn' class="btn btn-primary" onclick="clickLike({{post.id}}, '{{csrf_token}}')">

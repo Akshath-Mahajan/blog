@@ -58,6 +58,10 @@ class UpdateBlog(LoginRequiredMixin, UpdateView):
         return redirect('blog_detail', pk=blog.id)
 
 
-class DeleteBlog(LoginRequiredMixin, DeleteView):
-    model = BlogPost
-    success_url = '/'  # reverse_lazy('home')  # Change to whatever is home
+class DeleteBlog(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        b = BlogPost.objects.filter(author=request.user, id=self.kwargs['pk'])
+        if not b.exists():
+            return redirect('home')
+        b.delete()
+        return redirect('my_blogs')
