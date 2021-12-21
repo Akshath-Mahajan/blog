@@ -31,9 +31,9 @@ class BlogDetailView(DetailView):
         blog = BlogPost.objects.get(id=self.kwargs['pk'])
         comments = BlogComment.objects.filter(blog=blog).order_by('-id')
         likes = BlogLike.objects.filter(blog=blog)
-        if request.user:
+        has_liked = None
+        if request.user.is_authenticated:
             has_liked = likes.filter(like_author=request.user).exists()
-            print(has_liked)
         return render(request, self.template_name, {'post': blog, 'comments': comments,  'likes': likes, 'user': request.user, 'has_liked': has_liked})
 
 
