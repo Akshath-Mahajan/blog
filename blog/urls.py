@@ -7,7 +7,7 @@ urlpatterns = [
     path('<int:pk>/', BlogDetailView.as_view(), name='blog_detail'),
     path('create/', CreateBlog.as_view(), name="create_blog"),
     path('update/<int:pk>/', UpdateBlog.as_view(), name="update_blog"),
-    path('delete/<int:pk>/', DeleteBlog.as_view(), name="dreate_blog"),
+    path('delete/<int:pk>/', DeleteBlog.as_view(), name="delete_blog"),
 
     # API:
     path('<int:pk>/like/', CreateLike.as_view(), name="create_like"),
