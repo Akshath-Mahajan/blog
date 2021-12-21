@@ -3,7 +3,7 @@ function clickLike(pk, csrf){
         "HELLo"
     )
     fetch(
-        `/${pk}/like/`,
+        `/blog/${pk}/like/`,
         {
             headers: {
                 'Accept': 'application/json',
